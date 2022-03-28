@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Artikel {
 	
-	public static void createTableArtikel(Connection c) {
+	public static void createTableArtikel(Connection con) {
 		try { 			// try wird immer ausgeführt
-			Statement stmt = c.createStatement(); 				// benötigen wir für das updaten in der Datenbank
+			Statement stmt = con.createStatement(); 				// benötigen wir für das updaten in der Datenbank
 			//String sql = "DROP TABLE IF EXISTS Artikel;";
 			//stmt.executeUpdate(sql);
 			String sql = "CREATE TABLE IF NOT EXISTS Artikel" + 
@@ -25,11 +25,11 @@ public class Artikel {
 		}
 		
 
-	public static void insertIntoArtikel(Connection c, String bezeichnung, double preis, int lagerbestand) {
+	public static void insertIntoArtikel(Connection con, int id, String bezeichnung, double preis, int lagerbestand) {
 		try {
-			Statement stmt = c.createStatement();
-			String sql = "insert into Artikel (bezeichnung, preis, lagerbestand)" + 
-					"values (\"" + bezeichnung + "\", \"" + preis + "\", \"" + lagerbestand + "\");";
+			Statement stmt = con.createStatement();
+			String sql = "insert into Artikel (id,bezeichnung, preis, lagerbestand)" + 
+					"values ("+id+" \"" + bezeichnung + "\", \"" + preis + "\", \"" + lagerbestand + "\");";
 			stmt.executeUpdate(sql);
 			stmt.close();
 			System.out.println("InsertArtikel erfolgreich");
@@ -39,9 +39,9 @@ public class Artikel {
 		}
 	}
 	
-	public static void Lagerupdate(Connection c, int lagerbestand, int id) {
+	public static void Lagerupdate(Connection con, int lagerbestand, int id) {
 		try {
-			Statement stmt = c.createStatement();
+			Statement stmt = con.createStatement();
 			String sql = "update Artikel set lagerbestand = "+ lagerbestand +", where Artikelid = "+ id +");";
 			stmt.executeUpdate(sql);
 			stmt.close();

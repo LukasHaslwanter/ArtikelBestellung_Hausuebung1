@@ -20,6 +20,11 @@ public class Runner {
 		    try {
 		    Connection con = DriverManager.getConnection(url, user, pass);
 		    System.out.println("Verbindung erfolgreich hergestellt");
+		    /*Kunden.createTableKunde(con);
+		    Artikel.createTableArtikel(con);
+		    Bestellung.createTableBestellung(con);*/
+		   // Kunden.insertIntoKunde(con, "Walter", "Walterwhite@gmail.com");
+		    Artikel.insertIntoArtikel(con,3, "Handy", 190, 20);
 
 		    } catch (SQLException e) {
 		    System.out.println(e.getMessage());
@@ -28,7 +33,7 @@ public class Runner {
 		
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			Connection c = createConnection();
 			c.setAutoCommit(true);

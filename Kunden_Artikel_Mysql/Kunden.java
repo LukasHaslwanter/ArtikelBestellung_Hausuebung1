@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class Kunden {
 	
-	public static void createTableKunde(Connection c) {
+	public static void createTableKunde(Connection con) {
         try {
-            Statement stmt = c.createStatement();
+            Statement stmt = con.createStatement();
             //String sql = "DROP TABLE IF EXISTS Kunde;";
             //stmt.executeUpdate(sql);
             String sql = "CREATE TABLE IF NOT EXISTS Kunde" +
@@ -23,9 +23,9 @@ public class Kunden {
         }
     }
 
-    public static void insertIntoKunde(Connection c, String name, String email) {
+    public static void insertIntoKunde(Connection con, String name, String email) {
         try {
-            Statement stmt = c.createStatement();
+            Statement stmt = con.createStatement();
             String sql = "insert into Kunde (name, email) values" +
                     "(\"" + name + "\", \"" + email +"\");";
             stmt.executeUpdate(sql);
